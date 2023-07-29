@@ -1,0 +1,15 @@
+{
+  "name": "habit-tracker",
+  "version": "1.0.0",
+  "description": " track the habbit of user",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Sonu Raut",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
