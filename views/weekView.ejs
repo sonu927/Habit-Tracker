@@ -1,0 +1,56 @@
+<h1>Weekly View Of Habits</h1>
+
+
+<div id="all-habit-container">
+    <%for(habit of habits){%>
+        <div>
+            <div>
+                <h3><%= habit.name%></h3>
+            </div>    
+            <div>
+                <h4>Today</h4>
+                <span><%= habit.date.toLocaleString('en-US', { month: 'long' })%>  <%= habit.date.getDate()%></span>
+                <div>
+                    <a href="/toggleHabit/<%= habit.id%>" onclick="toggleHabitStatus(event,'<%= habit.id%>')"><%= habit.status%></a>
+                </div>
+            </div>
+            <% for(days of habit.previousDays){%>
+                <div>
+                    <div>
+                        <%= days.date.toLocaleString('en-US', { month: 'long' })%>  <%= days.date.getDate()%>
+                    </div>
+                    <div>
+                        <a href="/toggleDay/?date=<%= days.date.toISOString().split('T')[0] %>&id=<%= habit.id%>" onclick="toggleDayStatus(event,'<%= habit.id%>','<%= days.date.toISOString().split('T')[0] %>')"><%= days.status %></a>
+                    </div>
+                </div>    
+            <%} %>
+        </div>
+        <hr>
+    <%}%>
+</div>
+
+<script>
+    function toggleHabitStatus(event,habitId){
+        event.preventDefault();
+        //const habitId = event.target.dataset.habitId;
+        fetch(`/toggleHabit/${habitId}`,{method: 'POST'})
+        .then(response => response.json())
+        .then(updatedStatus => {
+            const clickedElement = event.target;
+            clickedElement.textContent = updatedStatus;
+        })
+        .catch(error => console.error('Error in toggling the status:',error));
+    }
+
+    function toggleDayStatus(event,habitId,day){
+        event.preventDefault();
+
+        fetch(`/toggleDay/?date=${day}&id=${habitId}`,{method: 'POST'})
+        .then(response => response.json())
+        .then(updatedDayStatus => {
+            const clickedElement = event.target;
+            clickedElement.textContent = updatedDayStatus;
+        })
+        .catch(error => console.log('Error in toggling the days status:',error));
+    }
+</script>

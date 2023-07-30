@@ -1,0 +1,40 @@
+<h1>Home</h1>
+
+
+<form action="/add" method="post">
+    <input type="text" name="name" placeholder="Habit...">
+    <input type="submit">
+</form>
+
+<div>
+    <button><a href="/weekview">Show Weekly View</a></button>
+</div>
+
+<% for( habit of habits){%>
+    <div>
+        <div>
+            <%= habit.name%>
+        </div>
+        <div>
+            <a href="/toggleHabit/<%= habit.id%>" data-habitId="<%= habit.id %>" onclick="toggleHabitStatus(event,'<%= habit.id%>')"><%= habit.status%></a>
+        </div>
+        <div>
+            <%= habit.date.toLocaleString('en-US', { month: 'long' })%>  <%= habit.date.getDate()%>
+        </div>
+    </div>
+    <hr>
+<%}%>
+
+<script>
+    function toggleHabitStatus(event,habitId){
+        event.preventDefault();
+        //const habitId = event.target.dataset.habitId;
+        fetch(`/toggleHabit/${habitId}`,{method: 'POST'})
+        .then(response => response.json())
+        .then(updatedStatus => {
+            const clickedElement = event.target;
+            clickedElement.textContent = updatedStatus;
+        })
+        .catch(error => console.error('Error in toggling the status:',error));
+    }
+</script>

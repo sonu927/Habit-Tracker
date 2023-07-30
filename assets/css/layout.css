@@ -1,0 +1,9 @@
+body{
+    margin: 0;
+    background-color: black;
+    color: white;
+}
+
+body main{
+    min-height: 100vh;
+}

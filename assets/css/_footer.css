@@ -1,0 +1,9 @@
+footer{
+    display: flex;
+    background-color: black;
+    height: 50px;
+}
+#head{
+    font-size: x-large;
+    -webkit-text-stroke: 0.4px red;
+}

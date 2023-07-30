@@ -1,0 +1,17 @@
+header{
+    margin: 0;
+    height: 70px;
+    background-color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#header-nav{
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 1%;
+    color: black;
+    margin: 0;
+    font-size: xx-large;
+    -webkit-text-stroke: 0.4px red;
+}
+
