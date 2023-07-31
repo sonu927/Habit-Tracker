@@ -1,0 +1,80 @@
+#week-container{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2%;
+    gap: 0.7em;
+}
+
+#all-habit-container{
+    width: 80%;
+}
+
+#dialy-view-btn button{
+    padding: 1%;
+    border: none;
+    color: black;
+    background-color: #FF4545;
+    border-radius: 15px;
+}
+
+#dialy-view-btn button a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+#dialy-view-btn button:hover{
+    background-color: #f92b2b;
+    box-shadow: 0px 2px 2px 2px gray ;
+}
+
+.week-habit-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2%;
+    background-color: #212122;
+    border-radius: 20px;
+    box-shadow: 1px 5px 4px 2px rgb(164, 160, 160);
+    margin-bottom: 1.2em;
+
+}
+
+#week-habit-heading{
+    color: yellow;
+    font-size: larger;
+    font-weight: bolder;
+}
+#week-today-status{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+#week-today-status h4{
+    margin: 0;
+    /* //margin-bottom: 4px; */
+    text-decoration: underline;
+}
+
+.week-day-status{
+    background-color: #FF4545;
+    text-align: center;
+    padding: 4px;
+    border-radius: 10px;
+    font-size: large;
+    transition: 0.2s;
+}
+
+.week-day-status a{
+    text-decoration: none;
+    color: black;
+}
+
+.week-day-status:hover{
+    background-color: #f92b2b;
+    box-shadow: 0px 2px 2px 2px gray ;
+}

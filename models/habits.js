@@ -27,6 +27,8 @@ const habitSchema = new mongoose.Schema({
             }
         }
     ]
+},{
+    timestamps: true
 });
 
 const Habit = mongoose.model('Habit',habitSchema);

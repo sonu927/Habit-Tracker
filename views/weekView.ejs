@@ -1,33 +1,48 @@
-<h1>Weekly View Of Habits</h1>
+<link rel="stylesheet" href="/css/weekView.css">
 
+<div id="week-container">
+    <div>
+        <h1>Weekly View</h1>
+    </div>
+    <div id="dialy-view-btn">
+        <button>
+            <a href="/">Show Daily View</a>
+        </button>
+    </div>
 
-<div id="all-habit-container">
-    <%for(habit of habits){%>
-        <div>
-            <div>
-                <h3><%= habit.name%></h3>
-            </div>    
-            <div>
-                <h4>Today</h4>
-                <span><%= habit.date.toLocaleString('en-US', { month: 'long' })%>  <%= habit.date.getDate()%></span>
-                <div>
-                    <a href="/toggleHabit/<%= habit.id%>" onclick="toggleHabitStatus(event,'<%= habit.id%>')"><%= habit.status%></a>
-                </div>
-            </div>
-            <% for(days of habit.previousDays){%>
-                <div>
-                    <div>
-                        <%= days.date.toLocaleString('en-US', { month: 'long' })%>  <%= days.date.getDate()%>
-                    </div>
-                    <div>
-                        <a href="/toggleDay/?date=<%= days.date.toISOString().split('T')[0] %>&id=<%= habit.id%>" onclick="toggleDayStatus(event,'<%= habit.id%>','<%= days.date.toISOString().split('T')[0] %>')"><%= days.status %></a>
-                    </div>
+    <div id="all-habit-container">
+        <%for(habit of habits){%>
+            <div class="week-habit-container">
+                <div id="week-habit-heading">
+                    <h3><%= habit.name%></h3>
                 </div>    
-            <%} %>
-        </div>
-        <hr>
-    <%}%>
+                <div id="week-today-status">
+                    <h4>Today</h4>
+                    <span><%= habit.date.toLocaleString('en-US', { month: 'long' })%>  <%= habit.date.getDate()%></span>
+                    <div class="week-day-status">
+                        <a href="/toggleHabit/<%= habit.id%>" onclick="toggleHabitStatus(event,'<%= habit.id%>')"><%= habit.status%></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Previous 6 days:</h4>
+                </div>
+                <!--list of all the 6 previous days and status-->
+                <% for(days of habit.previousDays){%>
+                    <div>
+                        <div>
+                            <%= days.date.toLocaleString('en-US', { month: 'long' })%>  <%= days.date.getDate()%>
+                        </div>
+                        <div class="week-day-status" style="margin-top: 5px;">
+                            <a href="/toggleDay/?date=<%= days.date.toISOString().split('T')[0] %>&id=<%= habit.id%>" onclick="toggleDayStatus(event,'<%= habit.id%>','<%= days.date.toISOString().split('T')[0] %>')"><%= days.status %></a>
+                        </div>
+                    </div>    
+                <%} %>
+            </div>
+        <%}%>
+    </div>
 </div>
+
+
 
 <script>
     function toggleHabitStatus(event,habitId){

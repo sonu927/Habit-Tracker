@@ -1,14 +1,16 @@
 const Habit = require('../models/habits');
 
+
+//fetches all the habits from the DB and render home Page
 module.exports.home = async function(req,res){
     updateHabitDaily();
-    const habits = await Habit.find({});
-    //console.log(habits);
+    const habits = await Habit.find({}).sort({createdAt: -1});
     return res.render('home',{
         habits: habits
     });
 }
 
+//add new habit to DB
 module.exports.addHabit = async function(req,res){
     try{
         const newHabit = {
@@ -37,6 +39,7 @@ module.exports.addHabit = async function(req,res){
     }
 }
 
+//toggle habit status everytime you click it
 module.exports.toggleHabit = async function(req,res){
     try {
         const habit = await Habit.findById(req.params.id);
@@ -58,16 +61,17 @@ module.exports.toggleHabit = async function(req,res){
     }
 }
 
+//fetches all the habits from the DB and render Weekly View Page
 module.exports.weekView = async function(req,res){
-    const habits = await Habit.find({});
-    //console.log(habits);
+    const habits = await Habit.find({}).sort({createdAt: -1});
    
     return res.render('weekView',{
         habits: habits
     });
 }
 
-module.exports.toggleDay = async function(req,res){
+//toggle habit status for previous days
+module.exports.toggleDayStatus = async function(req,res){
     const habit = await Habit.findById(req.query.id);
     const habitDate = new Date(req.query.date);
     //console.log(habitDate);
@@ -83,6 +87,22 @@ module.exports.toggleDay = async function(req,res){
     return res.json(habit.previousDays[index].status);
 }
 
+//delete the habit
+module.exports.delete = async function(req,res){
+    try{
+        const habit = await Habit.findById(req.params.id);
+        if(!habit){
+            return res.status(404).json({ message: 'Habit not found' });
+        }
+        await habit.deleteOne();
+        return res.redirect('back');
+    }catch(err){
+        console.error("Error in deleting the habit : ",err);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+//update the daily date for all habits
 async function updateHabitDaily(){
     const habits = await Habit.find({});
     const options = {

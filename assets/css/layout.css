@@ -1,9 +1,16 @@
 body{
     margin: 0;
-    background-color: black;
+    /* background-color: black; */
     color: white;
+    background-image: url('https://coolbackgrounds.io/images/backgrounds/black/black-radial-gradient-bb05ed79.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
 }
+
+
 
 body main{
     min-height: 100vh;
+    
 }

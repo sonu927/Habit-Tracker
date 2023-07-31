@@ -1,7 +1,7 @@
 header{
     margin: 0;
     height: 70px;
-    background-color: black;
+    /* background-color: black; */
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 #header-nav{
@@ -9,9 +9,14 @@ header{
     display: flex;
     justify-content: space-between;
     padding: 1%;
-    color: black;
+    color: white;
     margin: 0;
     font-size: xx-large;
-    -webkit-text-stroke: 0.4px red;
+    
 }
 
+#header-nav li a{
+    text-decoration: none;
+    color: white;
+    
+}

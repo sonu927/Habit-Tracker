@@ -1,29 +1,50 @@
-<h1>Home</h1>
+<link rel="stylesheet" href="/css/home.css">
 
+<div id="home-container">
+    <div>
+        <h1>Daily View</h1>
+    </div>
+    
 
-<form action="/add" method="post">
-    <input type="text" name="name" placeholder="Habit...">
-    <input type="submit">
-</form>
-
-<div>
-    <button><a href="/weekview">Show Weekly View</a></button>
+<div id="form-N-weekly">
+    <div id="form-container">
+        <form action="/add" method="post">
+            <input type="text" name="name" placeholder="Habit...">
+            <input type="submit" value="&#43;">
+        </form>
+    </div>
+    <div id="show-week-btn">
+        <button><a href="/weekview">Show Weekly View</a></button>
+    </div>
 </div>
 
-<% for( habit of habits){%>
-    <div>
-        <div>
-            <%= habit.name%>
+<div id="habits-container">
+    <% for( habit of habits){%>
+        <div class="single-habit">
+            <div id="habit-heading">
+                <%= habit.name%>
+            </div>
+            <div id="habit-status">
+                <a href="/toggleHabit/<%= habit.id%>" data-habitId="<%= habit.id %>" onclick="toggleHabitStatus(event,'<%= habit.id%>')"><%= habit.status%></a>
+            </div>
+            <div>
+                <%= habit.date.toLocaleString('en-US', { month: 'long' })%>  <%= habit.date.getDate()%>
+            </div>
+            <div id="delete-btn">
+                <button>
+                    <a href="/delete/<%= habit.id%>"><i class="fas fa-trash-alt"></i></a>
+                </button>
+                
+            </div>
         </div>
-        <div>
-            <a href="/toggleHabit/<%= habit.id%>" data-habitId="<%= habit.id %>" onclick="toggleHabitStatus(event,'<%= habit.id%>')"><%= habit.status%></a>
-        </div>
-        <div>
-            <%= habit.date.toLocaleString('en-US', { month: 'long' })%>  <%= habit.date.getDate()%>
-        </div>
-    </div>
-    <hr>
-<%}%>
+        
+    <%}%>
+</div>
+
+
+</div>
+
+
 
 <script>
     function toggleHabitStatus(event,habitId){

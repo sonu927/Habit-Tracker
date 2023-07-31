@@ -5,7 +5,6 @@ const uri ='mongodb+srv://sonu16122001:RpSu8SVp6TSwGanA@cluster-habittracker.ieb
 const db = mongoose.connect(uri,{ useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => {
     console.log('Connected to MongoDB Atlas');
-    // Start your application or perform other operations after successful connection
   })
   .catch((error) => {
     console.error('Error connecting to MongoDB Atlas:', error.message);
