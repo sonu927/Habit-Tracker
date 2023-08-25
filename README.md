@@ -10,3 +10,6 @@ In this web application you can add your habits and keep track of them daily and
 ->models = contains schema of habits.  
 ->routes = contains all routes for the project.  
 ->views = contains all ejs files for different pages.
+
+## You can check it on following link:-
+https://habit-tracker-sonu927.onrender.com/
